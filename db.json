@@ -1,12 +1,16 @@
 {
   "notes": [
     {
-      "text": "Hello express js with lowdb",
+      "text": "First note",
       "id": "TVasX8an4xk72ElVRcP8V"
     },
     {
-      "text": "Hello express js with lowdb",
+      "text": "Second note",
       "id": "Muqldqf7dfSqCXgnSBMgM"
+    },
+    {
+      "text": "My new note",
+      "id": "A8UbTbSkoMH7LUpb2cj5g"
     }
   ]
 }

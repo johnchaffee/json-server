@@ -2,7 +2,8 @@
 
 Demo of using lowdb as a local json database.
 
-[Youtube demo video](https://youtu.be/SY1RtzoR42g)
+* https://github.com/satansdeer/json-server
+* [Youtube demo video](https://youtu.be/SY1RtzoR42g)
 
 ## Setup
 

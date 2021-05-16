@@ -13,14 +13,14 @@ npm start
 
 ## Fetch and create records (notes)
 
-Use these curl commands to fetch and create notes. The notes will be stored as objects in `db.json` and persisted.
+Use these curl commands to fetch and create notes. The notes will be stored as json objects in `db.json` and will persist between restarts.
 
-// GET - fetch all notes
+### GET - Fetch all notes
 ```curl
 curl http://localhost:4000/notes
 ```
 
-// POST - Create a note
+### POST - Create a note
 ```curl
 curl --header "Content-Type: application/json" \
 --request POST \

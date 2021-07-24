@@ -12,16 +12,18 @@ db.defaults({ notes: [] }).write()
 const app = express()
 
 app.use(cors())
-app.use(bodyParser.json())
+app.use(express.json())
+// app.use(express.urlencoded({ extended: true }))
 
 const PORT = 4000;
 
 app.get('/notes', (req, res) => {
   const data = db.get("notes").value()
+  console.log("data: " + JSON.stringify(data, undefined, 2))
   return res.json(data)
 })
 
-app.post('/notes/new', (req, res) => {
+app.post('/notes', (req, res) => {
   const note = req.body
   db.get("notes").push({
     ...note, id: nanoid()

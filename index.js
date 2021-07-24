@@ -23,6 +23,11 @@ app.get("/notes", (req, res) => {
   return res.json(data);
 });
 
+app.get("/notes/:id", async (req, res) => {
+  const note = db.get("notes").find((n) => n.id === req.params.id);
+  res.send(note);
+});
+
 app.post("/notes", (req, res) => {
   const note = req.body;
   db.get("notes")

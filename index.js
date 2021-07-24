@@ -31,10 +31,7 @@ app.get("/notes/:id", async (req, res) => {
 app.post("/notes", (req, res) => {
   const note = req.body;
   db.get("notes")
-    .push({
-      ...note,
-      id: nanoid(),
-    })
+    .push({ ...note, id: nanoid() })
     .write();
   res.json({ success: true });
 });

@@ -25,11 +25,24 @@ app.get("/notes", (req, res) => {
 
 app.get("/notes/:id", async (req, res) => {
   const note = db.get("notes").find((n) => n.id === req.params.id);
+  console.log("note: " + JSON.stringify(note, undefined, 2));
   res.send(note);
+});
+
+app.put("/notes/:id", (req, res) => {
+  const note = db.get('notes')
+  .find({ id: req.params.id }) // Lodash shorthand syntax
+  .assign({'text': req.body.text})
+  .value()
+  db.write()
+  console.log(note)
+  res.json({ success: true });
 });
 
 app.post("/notes", (req, res) => {
   const note = req.body;
+  console.log("note: " + JSON.stringify(note, undefined, 2));
+  console.log("note.text: " + note.text);
   db.get("notes")
     .push({ ...note, id: nanoid() })
     .write();

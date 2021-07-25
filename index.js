@@ -39,15 +39,6 @@ app.put("/contacts/:number", (req, res) => {
   res.json({ success: true });
 });
 
-// app.post("/contacts", (req, res) => {
-//   const contact = req.body;
-//   console.log("contact: " + JSON.stringify(contact, undefined, 2));
-//   db.get("contacts")
-//   .push({ ...contact })
-//   .write();
-//   res.json({ success: true });
-// });
-
 // A post will only create a contact if it finds a matching number
 // This works fine for our example since we are updating existing contact records
 app.post("/contacts", (req, res) => {
@@ -61,6 +52,15 @@ app.post("/contacts", (req, res) => {
   console.log("updateContact: " + JSON.stringify(updateContact, undefined, 2));
   res.json({ success: true });
 });
+
+// app.post("/contacts", (req, res) => {
+//   const contact = req.body;
+//   console.log("contact: " + JSON.stringify(contact, undefined, 2));
+//   db.get("contacts")
+//   .push({ ...contact })
+//   .write();
+//   res.json({ success: true });
+// });
 
 app.listen(PORT, () => {
   console.log(`Backend is running on http://localhost:${PORT}`);

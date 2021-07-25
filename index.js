@@ -23,19 +23,19 @@ app.get("/contacts", (req, res) => {
 });
 
 app.get("/contacts/:number", async (req, res) => {
-  const contact = db.get("contacts")
-  .find({ number: req.params.number });
+  const contact = db.get("contacts").find({ number: req.params.number });
   console.log("contact: " + JSON.stringify(contact, undefined, 2));
   res.send(contact);
 });
 
 app.put("/contacts/:number", (req, res) => {
-  const contact = db.get('contacts')
-  .find({ number: req.params.number })
-  .assign({'first': req.body.first, 'last': req.body.last })
-  .value()
-  db.write()
-  console.log(contact)
+  const contact = db
+    .get("contacts")
+    .find({ number: req.params.number })
+    .assign({ first: req.body.first, last: req.body.last })
+    .value();
+  db.write();
+  console.log(contact);
   res.json({ success: true });
 });
 
@@ -43,12 +43,13 @@ app.put("/contacts/:number", (req, res) => {
 // This works fine for our example since we are updating existing contact records
 app.post("/contacts", (req, res) => {
   console.log("POST /contacts: " + JSON.stringify(req.body, undefined, 2));
-  const updateContact = db.get('contacts')
-  .find({ number: req.body.number })
-  // .assign({'number': req.body.number, 'first': req.body.first, 'last': req.body.last })
-  .assign(req.body)
-  .value()
-  db.write()
+  const updateContact = db
+    .get("contacts")
+    .find({ number: req.body.number })
+    // .assign({'number': req.body.number, 'first': req.body.first, 'last': req.body.last })
+    .assign(req.body)
+    .value();
+  db.write();
   console.log("updateContact: " + JSON.stringify(updateContact, undefined, 2));
   res.json({ success: true });
 });

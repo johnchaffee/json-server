@@ -1,99 +1,24 @@
 {
   "contacts": [
     {
-      "number": "2063099554",
-      "first": "Alan",
-      "last": "Cheslow"
-    },
-    {
-      "number": "2068163571",
-      "first": "Eduardo",
-      "last": "Martinez"
-    },
-    {
-      "number": "2063099567",
-      "first": "Fadi",
-      "last": "Banna"
-    },
-    {
-      "number": "2068163671",
-      "first": "Jeff",
-      "last": "Parrish"
-    },
-    {
-      "number": "2064932128",
-      "first": "Johannes",
-      "last": "Wong"
-    },
-    {
-      "number": "2063996576",
+      "number": "+12063996576",
       "first": "John",
       "last": "Chaffee"
     },
     {
-      "number": "2065823770",
-      "first": "John",
-      "last": "Lauer"
+      "number": "+12063693826",
+      "first": "Lani",
+      "last": "Chaffee"
     },
     {
-      "number": "2064932020",
-      "first": "Jordan",
-      "last": "Kiga"
+      "number": "+12067245201",
+      "first": "Mike",
+      "last": "Chaffee"
     },
     {
-      "number": "2063099568",
-      "first": "Amit",
-      "last": "Mahajan"
-    },
-    {
-      "number": "2062991359",
-      "first": "Marc",
-      "last": "Rosa"
-    },
-    {
-      "number": "2068163991",
-      "first": "Marc",
-      "last": "Amsberry"
-    },
-    {
-      "number": "2068001254",
-      "first": "Ravi",
-      "last": "Angadi"
-    },
-    {
-      "number": "2063099553",
-      "first": "Ryan",
-      "last": "Gachet"
-    },
-    {
-      "number": "2063099565",
-      "first": "Sascha",
-      "last": "Mehlhase"
-    },
-    {
-      "number": "2068163972",
-      "first": "Stacy",
-      "last": "Randolph"
-    },
-    {
-      "number": "2068163623",
-      "first": "Tony",
-      "last": "Ip"
-    },
-    {
-      "number": "2062991349",
-      "first": "Reilly",
-      "last": "Miller"
-    },
-    {
-      "number": "2062991395",
-      "first": "Aditi",
-      "last": "Gupta"
-    },
-    {
-      "number": "2063099569",
-      "first": "Dave",
-      "last": "Suzuki"
+      "number": "+12067245169",
+      "first": "Lynn",
+      "last": "Chaffee"
     }
   ]
 }

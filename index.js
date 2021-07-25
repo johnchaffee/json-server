@@ -1,28 +1,15 @@
-const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const lowDb = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 const bodyParser = require("body-parser");
 
-// On initialization, overwrite db.json with default data
-const sourcePath = "db-default.json";
-const destinationPath = "db.json";
-const sourceObject = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
-try {
-  fs.writeFileSync(
-    destinationPath,
-    JSON.stringify(sourceObject, null, 2),
-    "utf8"
-  );
-  console.log("The file was saved!");
-} catch (err) {
-  console.err("An error has ocurred when saving the file.");
-}
-
 const db = lowDb(new FileSync("db.json"));
 
 db.defaults({ contacts: [] }).write();
+
+// Reset db on initialization
+// db.get("contacts").remove().write();
 
 const app = express();
 
@@ -31,6 +18,11 @@ app.use(express.json());
 // app.use(express.urlencoded({ extended: true }))
 
 const PORT = 3000;
+
+app.get("/reset", (req, res) => {
+  db.get("contacts").remove().write();
+  return res.send("db deleted");
+});
 
 app.get("/contacts", (req, res) => {
   const data = db.get("contacts").value();

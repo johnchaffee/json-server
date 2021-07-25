@@ -1,8 +1,24 @@
+const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const lowDb = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 const bodyParser = require("body-parser");
+
+// On initialization, overwrite db.json with default data
+const sourcePath = "db-default.json";
+const destinationPath = "db.json";
+const sourceObject = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
+try {
+  fs.writeFileSync(
+    destinationPath,
+    JSON.stringify(sourceObject, null, 2),
+    "utf8"
+  );
+  console.log("The file was saved!");
+} catch (err) {
+  console.err("An error has ocurred when saving the file.");
+}
 
 const db = lowDb(new FileSync("db.json"));
 
@@ -39,29 +55,14 @@ app.get("/contacts/:number", async (req, res) => {
 //   res.json({ success: true });
 // });
 
-// A post will only create a contact if it finds a matching number
-// This works fine for our example since we are updating existing contact records
 app.post("/contacts", (req, res) => {
-  console.log("POST /contacts: " + JSON.stringify(req.body, undefined, 2));
-  const contact = db
-    .get("contacts")
-    .find({ number: req.body.number })
-    // .assign({'number': req.body.number, 'first': req.body.first, 'last': req.body.last })
-    .assign(req.body)
-    .value();
-  // db.write();
+  const contact = req.body;
   console.log("contact: " + JSON.stringify(contact, undefined, 2));
+  db.get("contacts")
+    .push({ ...contact })
+    .write();
   res.json({ success: true });
 });
-
-// app.post("/contacts", (req, res) => {
-//   const contact = req.body;
-//   console.log("contact: " + JSON.stringify(contact, undefined, 2));
-//   db.get("contacts")
-//   .push({ ...contact })
-//   .write();
-//   res.json({ success: true });
-// });
 
 // WEBHOOKS
 app.post("/send", (req, res, next) => {

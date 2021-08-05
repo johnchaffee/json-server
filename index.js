@@ -56,6 +56,13 @@ app.post("/contacts", (req, res) => {
   res.json({ success: true });
 });
 
+// ACK NEW WEBHOOKS
+// Acknowledge webhooks from the new Kafka server (path includes '-new') but don't process them
+app.post(/\-new/, (req, res, next) => {
+  console.log("ACK NEW ZIPWHIP WEBHOOK");
+  res.sendStatus(200);
+});
+
 // WEBHOOKS
 app.post("/send", (req, res, next) => {
   console.log("SEND WEBHOOK");

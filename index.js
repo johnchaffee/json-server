@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }))
 
-const PORT = 3000;
+const PORT = 4000;
 
 app.get("/reset", (req, res) => {
   db.get("contacts").remove().write();
@@ -56,12 +56,12 @@ app.post("/contacts", (req, res) => {
   res.json({ success: true });
 });
 
-// ACK NEW WEBHOOKS
-// Acknowledge webhooks from the new Kafka server (path includes '-new') but don't process them
-app.post(/\-new/, (req, res, next) => {
-  console.log("ACK NEW ZIPWHIP WEBHOOK");
-  res.sendStatus(200);
-});
+// // ACK WEBHOOK
+// // Acknowledge webhooks from twilio or new Kafka server but don't process them
+// app.post(/\/(twilio|new)/, (req, res, next) => {
+//   console.log("ACK WEBHOOK");
+//   res.sendStatus(200);
+// });
 
 // WEBHOOKS
 app.post("/send", (req, res, next) => {
@@ -156,6 +156,14 @@ app.post("/stop", (req, res, next) => {
   // db.write();
   res.sendStatus(200);
 });
+
+// ACK WEBHOOK
+// Catchall to acknowledge webhooks that don't match the paths above
+app.post(/.*/, (req, res, next) => {
+  console.log("ACK WEBHOOK");
+  res.sendStatus(200);
+});
+
 
 app.listen(PORT, () => {
   console.log(`Backend is running on http://localhost:${PORT}`);
